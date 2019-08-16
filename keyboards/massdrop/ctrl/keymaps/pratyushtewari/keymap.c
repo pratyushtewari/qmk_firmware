@@ -23,7 +23,8 @@ enum ctrl_keycodes {
     DBG_MOU,            //DEBUG Toggle Mouse Prints
     DBG_FAC,            //DEBUG Factory light testing (All on white)
     MD_BOOT,            //Restart into bootloader after hold timeout
-    SND_SID             //Send SID to the Computer
+    SND_SID,            //Send SID to the Computer
+    SND_SLEEP           // Send sleep ctrl + shit + power to the computer 
 };
 
 #define TG_NKRO MAGIC_TOGGLE_NKRO //Toggle 6KRO / NKRO mode
@@ -40,7 +41,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LCTL, KC_LALT, KC_LCMD,                   KC_SPC,                             KC_RCMD, KC_RALT, KC_RCTL, KC_APP,            KC_LEFT, KC_DOWN, KC_RGHT  \
     ),
     [1] = LAYOUT(
-        _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,             SND_SID, _______, KC_SLEP, \
+        _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,             SND_SID, _______, SND_SLEEP, \
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,   _______, _______, _______, \
         L_T_BR,  L_PSD,   L_BRI,   L_PSI,   L_EDG_I, _______, _______, _______, U_T_AGCR,_______, _______, _______, _______, _______,   _______, _______, _______, \
         L_T_PTD, L_PTP,   L_BRD,   L_PTN,   L_EDG_D, _______, _______, _______, _______, _______, _______, _______, _______,                                       \
@@ -58,6 +59,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     */
 };
+
+void suspend_power_down_user(void) {
+    rgb_matrix_set_suspend_state(true);
+}
+
+void suspend_wakeup_init_user(void) {
+    rgb_matrix_set_suspend_state(false);
+}
 
 // Runs just one time when the keyboard initializes.
 void matrix_init_user(void) {
@@ -79,6 +88,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case SND_SID:
             if (record->event.pressed) {
                 SEND_STRING("f644726");
+            }
+            return false;
+        case SND_SLEEP:
+            if (record->event.pressed) {
+                SEND_STRING(SS_DOWN(X_LCTRL) SS_DOWN(X_LSHIFT) SS_DOWN(X_POWER) SS_UP(X_POWER) SS_UP(X_LSHIFT) SS_UP(X_LCTRL));
             }
             return false;
         case L_BRI:
