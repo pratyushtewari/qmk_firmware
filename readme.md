@@ -1,3 +1,18 @@
+# QMK Fork for massdrop to get mac ANSI layout
+This is a fork of [Massdrop/qmk_firmware](https://github.com/Massdrop/qmk_firmware) which is a fork of [qmk/qmk_firmware](https://github.com/qmk/qmk_firmware)
+
+#### Addtional things added to the original massdrop configuration
+
+- The function key row in layer 0 is <br>
+<kbd>⎋ Escape</kbd> <kbd>☼ Screen Brightness ⬇︎ </kbd> <kbd>☼ Screen Brightness ⬆︎</kbd> <kbd>F3</kbd> <kbd>F4</kbd> <kbd>F5</kbd> <kbd>F6</kbd><kbd>Previous ⏩</kbd> <kbd>Play/Pause ⏯</kbd><kbd>Next ⏪</kbd><kbd>Mute 🔇</kbd><kbd>Volume Down 🔈</kbd><kbd>Volume up 🔊</kbd>
+- The <kbd>Mod (1)</kbd> key is moved to <kbd>Insert</kbd>
+- Last Modifer Row is <br>
+<kbd>⌃ Control</kbd> <kbd>⌥ Option</kbd> <kbd>⌘ Command</kbd> <kbd>      Space      </kbd>
+ <kbd>⌘ Command</kbd><kbd>⌥ Option</kbd><kbd>⌃ Control</kbd> <kbd>APP/Menu</kbd>
+
+Please continue to folder [keyb...massd...pratyushtewari](keyboards/massdrop/ctrl/keymaps/pratyushtewari)
+
+---
 # Quantum Mechanical Keyboard Firmware
 
 [![Current Version](https://img.shields.io/github/tag/qmk/qmk_firmware.svg)](https://github.com/qmk/qmk_firmware/tags)

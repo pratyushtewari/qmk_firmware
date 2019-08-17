@@ -2,6 +2,9 @@
 .dep
 *.o
 *.bin
+!applet-flash-samd51j18a.bin
+!massdrop_ctrl_pratyushtewari.bin
+!mdloader_mac
 *.eep
 *.elf
 *.hex
